@@ -96,6 +96,23 @@ The test signal publishes a 720p SMPTE color bar to the `test` path:
 /Applications/VLC.app/Contents/MacOS/VLC rtsp://127.0.0.1:8554/{path}
 ```
 
+## Streaming from OBS
+
+OBS can publish a live stream to MediaMTX over RTMP.
+
+**Settings → Stream:**
+- **Service:** Custom
+- **Server:** `rtmp://stream.monz.dk:1935`
+- **Stream key:** `live`
+
+Viewers watch at: `http://stream.monz.dk:8889/live`
+
+### B-frames
+
+WebRTC does not support H264 streams with B-frames. If the stream connects but shows no video, disable B-frames in OBS:
+
+**Settings → Output → Streaming → Encoder Settings** — add `bframes=0` to the x264 options, then stop and restart the stream.
+
 ## Connecting a DJI Neo drone
 
 The DJI Neo pushes RTMP via the DJI Fly app.
