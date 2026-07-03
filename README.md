@@ -156,6 +156,38 @@ Docker Desktop on macOS has a DNS resolution bug that prevents containers from r
 
 Keep port `9997` (API) private or restrict it by IP.
 
+### Ubuntu (ufw)
+
+```bash
+sudo ufw allow 1935/tcp
+sudo ufw allow 8554/tcp
+sudo ufw allow 8888/tcp
+sudo ufw allow 8889/tcp
+sudo ufw allow 8189/udp
+sudo ufw reload
+```
+
+Verify the rules:
+
+```bash
+sudo ufw status
+```
+
+### Ubuntu (iptables)
+
+```bash
+sudo iptables -A INPUT -p tcp --dport 1935 -j ACCEPT
+sudo iptables -A INPUT -p tcp --dport 8554 -j ACCEPT
+sudo iptables -A INPUT -p tcp --dport 8888 -j ACCEPT
+sudo iptables -A INPUT -p tcp --dport 8889 -j ACCEPT
+sudo iptables -A INPUT -p udp --dport 8189 -j ACCEPT
+sudo iptables-save | sudo tee /etc/iptables/rules.v4
+```
+
+### Cloud provider security groups
+
+If your server is on AWS, GCP, DigitalOcean, or similar, you also need to open the ports in the cloud provider's firewall (security group / firewall rules) in addition to ufw. The specific steps depend on the provider.
+
 ## Stop the stack
 
 ```bash
