@@ -2,21 +2,16 @@ api: true
 rtspTransports: [udp, tcp]
 
 authInternalUsers:
-  - user: publish
-    pass: change-me
-    ips: []
-    permissions:
-      - action: publish
-        path:
-
   - user: any
     pass:
     ips: []
     permissions:
+      - action: publish
+        path: neo
       - action: read
-        path:
+        path: neo
       - action: playback
-        path:
+        path: neo
 
   - user: admin
     pass: change-me-admin

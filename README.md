@@ -146,17 +146,23 @@ Works regardless of whether the printer is in LAN mode. The printer and Mac must
 
 ## Production authentication
 
-`mediamtx.prod.yml` defines three users:
+Authentication uses the stream path as a secret key. Only clients that know the path `neo` can publish or consume — no username or password required in the URL.
 
-| User | Password | Can do |
-|------|----------|--------|
-| `publish` | `change-me` | Push streams |
-| `any` | _(none)_ | Read and play streams |
-| `admin` | `change-me-admin` | Access API |
+This is the same approach used by YouTube and Twitch stream keys.
 
-Publishers authenticate in the URL: `rtmp://publish:change-me@server-ip:1935/neo`
+| User | Can do |
+|------|--------|
+| `any` (anonymous) | Publish, read, and play on path `neo` |
+| `admin` | Access API |
 
-Change both passwords before deploying.
+**DJI Neo (DJI Fly app):**
+- Server: `rtmp://your-server-ip:1935`
+- Stream key: `neo`
+
+**OBS Browser Source:**
+- URL: `http://your-server-ip:8889/neo`
+
+**Admin API access** requires credentials. Change `change-me-admin` in `mediamtx.prod.yml` before deploying.
 
 ## Docker networking note (Mac only)
 
