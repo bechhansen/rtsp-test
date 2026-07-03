@@ -39,11 +39,29 @@ The override file is applied automatically. FFmpeg publishes a color bar test si
 
 ## Production (Ubuntu)
 
+**Option A — two files (keeps everything in the repo):**
+
 ```bash
 docker compose -f docker-compose.yml -f docker-compose.prod.yml up -d
 ```
 
-Before deploying, set strong passwords in `mediamtx.prod.yml` — replace `change-me` and `change-me-admin`.
+**Option B — rename config on the server (simpler):**
+
+Copy the repo to the server, rename the production config, then run normally:
+
+```bash
+cp mediamtx.prod.yml mediamtx.yml
+docker compose up -d
+```
+
+With Option B, `docker-compose.override.yml` is still picked up automatically. Since it references the FFmpeg image and the static IP network (Mac-only workarounds), you should delete it on the server:
+
+```bash
+rm docker-compose.override.yml
+docker compose up -d
+```
+
+Before deploying with either option, set strong passwords in `mediamtx.prod.yml` — replace `change-me` and `change-me-admin`.
 
 ## Connect OBS
 
