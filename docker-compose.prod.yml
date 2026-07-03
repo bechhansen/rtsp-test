@@ -1,0 +1,7 @@
+# Production overrides for Ubuntu
+# Usage: docker compose -f docker-compose.yml -f docker-compose.prod.yml up -d
+
+services:
+  mediamtx:
+    volumes:
+      - ./mediamtx.prod.yml:/mediamtx.yml

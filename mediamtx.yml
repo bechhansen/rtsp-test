@@ -1,0 +1,20 @@
+api: true
+rtspTransports: [tcp]
+
+authInternalUsers:
+  - user: any
+    pass:
+    ips: []
+    permissions:
+      - action: publish
+        path:
+      - action: read
+        path:
+      - action: playback
+        path:
+      - action: api
+      - action: metrics
+      - action: pprof
+
+paths:
+  all_others:
