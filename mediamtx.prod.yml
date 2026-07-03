@@ -1,5 +1,6 @@
 api: true
 rtspTransports: [udp, tcp]
+webrtcAdditionalHosts: [stream.monz.dk]
 
 authInternalUsers:
   - user: any
